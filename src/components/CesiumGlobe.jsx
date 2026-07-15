@@ -17,6 +17,7 @@ export default function CesiumGlobe({ goTo, goToCity, transitionMode = false, sc
   const lastTickTimeRef = useRef(performance.now());
 
   // 地图风格状态
+  const [viewerReady, setViewerReady] = useState(false); // Cesium Viewer 初始化完成标记
   const [mapStyle, setMapStyle] = useState('satellite'); // 默认卫星图
   const [showMapStyleMenu, setShowMapStyleMenu] = useState(false); // 控制菜单显示
   const currentImageryLayerRef = useRef(null);
@@ -109,6 +110,7 @@ export default function CesiumGlobe({ goTo, goToCity, transitionMode = false, sc
 
       viewer.current.clock.shouldAnimate = true;
 
+      setViewerReady(true);
       console.log('Cesium Viewer 创建成功');
 
       // 隐藏左下角的控制器
@@ -417,6 +419,7 @@ export default function CesiumGlobe({ goTo, goToCity, transitionMode = false, sc
           }
           viewer.current.destroy();
           viewer.current = null;
+          setViewerReady(false);
         }
       } catch (error) {
         console.error('Cesium 清理错误:', error);
@@ -674,7 +677,7 @@ export default function CesiumGlobe({ goTo, goToCity, transitionMode = false, sc
 
   // ========= Dynamic City Points from Supabase =========
   useEffect(() => {
-    if (!viewer.current || !cityPointsProp || cityPointsProp.length === 0) return;
+    if (!viewerReady || !viewer.current || !cityPointsProp || cityPointsProp.length === 0) return;
 
     // Remove previously added city entities
     cityEntitiesRef.current.forEach(entity => {
@@ -690,7 +693,13 @@ export default function CesiumGlobe({ goTo, goToCity, transitionMode = false, sc
 
     cityPointsProp.forEach((pt, index) => {
       try {
-        const position = Cesium.Cartesian3.fromDegrees(pt.lng, pt.lat, 0);
+        const lng = Number(pt.lng);
+        const lat = Number(pt.lat);
+        if (!Number.isFinite(lng) || !Number.isFinite(lat)) {
+          console.warn(`跳过无效坐标地点: ${pt.name}`, pt);
+          return;
+        }
+        const position = Cesium.Cartesian3.fromDegrees(lng, lat, 0);
 
         const entity = viewer.current.entities.add({
           name: pt.name,
@@ -740,7 +749,7 @@ export default function CesiumGlobe({ goTo, goToCity, transitionMode = false, sc
     });
 
     console.log('动态城市点位加载完成，当前实体数:', viewer.current.entities.values.length);
-  }, [cityPointsProp]);
+  }, [cityPointsProp, viewerReady]);
 
   // 城市坐标配置（从 cityPointsProp 动态生成）
   const cityPositions = useMemo(() => {

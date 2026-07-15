@@ -59,12 +59,12 @@ export default function PinkAnimationHome({ goTo, goToCity, isCityMode = false, 
         try {
             const { data, error } = await supabase
                 .from('cities')
-                .select('name, lng, lat, color')
+                .select('name, lng, lat')
                 .order('sort_order', { ascending: true });
             if (data && !error) {
                 setCities(data.map(c => c.name));
                 setCityPoints(data.filter(c => c.lng && c.lat).map(c => ({
-                    name: c.name, lng: c.lng, lat: c.lat, color: c.color || '#FFFF00'
+                    name: c.name, lng: Number(c.lng), lat: Number(c.lat), color: '#FFFF00'
                 })));
             }
         } catch (e) {
@@ -79,16 +79,16 @@ export default function PinkAnimationHome({ goTo, goToCity, isCityMode = false, 
             try {
                 const { data, error } = await supabase
                     .from('cities')
-                    .select('name, lng, lat, color')
+                    .select('name, lng, lat')
                     .order('sort_order', { ascending: true });
                 if (data && !error) {
                     console.log(`[PinkAnimationHome] Successfully loaded ${data.length} cities`);
                     setCities(data.map(c => c.name));
                     setCityPoints(data.filter(c => c.lng && c.lat).map(c => ({
                         name: c.name,
-                        lng: c.lng,
-                        lat: c.lat,
-                        color: c.color || '#FFFF00'
+                        lng: Number(c.lng),
+                        lat: Number(c.lat),
+                        color: '#FFFF00'
                     })));
                 } else if (error) {
                     console.error('[PinkAnimationHome] Error loading cities:', error);
