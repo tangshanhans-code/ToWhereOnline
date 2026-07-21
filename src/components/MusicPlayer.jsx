@@ -238,7 +238,8 @@ return (
             <audio ref={audioRef} src={TRACKS[trackIndex]} />
             <canvas ref={canvasRef}></canvas>
         </div>
-    );
+    </>
+);
 };
 
 export default MusicPlayer;
