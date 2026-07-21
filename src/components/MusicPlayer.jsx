@@ -5,7 +5,7 @@ const TRACKS = [
     `${import.meta.env.BASE_URL}music/date.mp3`,
     `${import.meta.env.BASE_URL}music/alpha.mp3`,
     `${import.meta.env.BASE_URL}music/river.mp3`,
-    `${import.meta.env.BASE_URL}music/unforgettable.mp3.mp3`
+    `${import.meta.env.BASE_URL}music/public/music/unforgettable.mp3`
 ];
 
 // Final parameters provided by the user
