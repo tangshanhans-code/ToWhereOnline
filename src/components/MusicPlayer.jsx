@@ -26,6 +26,7 @@ const PARAMS = {
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [trackIndex, setTrackIndex] = useState(0);
+    const [showHint, setShowHint] = useState(true);
 
     const audioRef = useRef(null);
     const canvasRef = useRef(null);
@@ -215,10 +216,22 @@ const MusicPlayer = () => {
         setIsPlaying(true);
     };
 
-    return (
+return (
+    <>
+        {showHint && !isPlaying && (
+            <div className="music-hint">
+                🎵 点击左下角
+                <br />
+                开启背景音乐
+            </div>
+        )}
+
         <div
             className="music-player-particles"
-            onClick={togglePlay}
+            onClick={() => {
+                setShowHint(false);
+                togglePlay();
+            }}
             onDoubleClick={nextTrack}
             title={isPlaying ? "Click to Pause / Double-Click for Next Track" : "Click to Play"}
         >
