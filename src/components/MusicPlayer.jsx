@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './MusicPlayer.css';
 
 const TRACKS = [
-    `${import.meta.env.BASE_URL}music/unforgettable.mp3`
+    `${import.meta.env.BASE_URL}music/unforgettable.mp3.mp3`
 ];
 
 // Final parameters provided by the user
