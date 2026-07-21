@@ -235,7 +235,11 @@ return (
             onDoubleClick={nextTrack}
             title={isPlaying ? "Click to Pause / Double-Click for Next Track" : "Click to Play"}
         >
-            <audio ref={audioRef} src={TRACKS[trackIndex]} />
+           <audio 
+    ref={audioRef} 
+    src={TRACKS[trackIndex]} 
+    loop
+/>
             <canvas ref={canvasRef}></canvas>
         </div>
     </>
