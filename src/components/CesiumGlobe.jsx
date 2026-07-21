@@ -110,6 +110,14 @@ export default function CesiumGlobe({ goTo, goToCity, transitionMode = false, sc
 
       viewer.current.clock.shouldAnimate = true;
 
+
+// 修复远距离地球蓝色半球
+viewer.current.scene.globe.baseColor = Cesium.Color.BLACK;
+
+viewer.current.scene.globe.showGroundAtmosphere = false;
+
+viewer.current.scene.fog.enabled = false;
+
       setViewerReady(true);
       console.log('Cesium Viewer 创建成功');
 
