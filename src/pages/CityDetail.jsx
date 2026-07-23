@@ -188,7 +188,7 @@ export default function CityDetail({ cityName, goBack }) {
       {/* 图片流区域 */}
       <div className="gallery-section">
         <div className="gallery-container">
-          <h2 className="gallery-title">测试</h2>
+          <h2 className="gallery-title">记录瞬间</h2>
           <div className="gallery-grid">
             {currentCity.gallery.length > 0 ? (
               currentCity.gallery.map((image, index) => {
