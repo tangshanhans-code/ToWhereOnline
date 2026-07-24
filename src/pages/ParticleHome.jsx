@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
+import LoveTimer from "../components/LoveTimer";
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -321,6 +322,7 @@ export default function ParticleHome({ goTo }) {
 
 
       {/* 控制中心 */}
+      <LoveTimer />
       <div style={{
         position: 'absolute',
         bottom: '50px',
