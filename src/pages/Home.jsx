@@ -602,6 +602,7 @@ export default function Home({ goTo, goToCity }) {
             pointerEvents: globeScrollProgress > 0.95 ? 'auto' : 'none' // 只有地球滚动到95%才启用交互
           }}
         >
+          <LoveTimer />
           <CesiumGlobe
             goToCity={goToCity}
             transitionMode={true}
