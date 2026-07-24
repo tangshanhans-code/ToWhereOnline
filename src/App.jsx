@@ -50,8 +50,6 @@ export default function App() {
     }
 
    // 2. Handle Hash for tabs
-useEffect(() => {
-
   const handleHashChange = () => {
 
     const hash = window.location.hash.replace('#','');
