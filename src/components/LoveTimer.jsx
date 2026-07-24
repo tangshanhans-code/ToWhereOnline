@@ -38,10 +38,10 @@ return (
 
 <div
 style={{
-position:"absolute",
-top:"40px",
-left:"50%",
-transform:"translateX(-50%)",
+position:"fixed",
+top:"50%",
+right:"50px",
+transform:"translateY(-50%)",
 zIndex:99999,
 color:"#fff",
 fontSize:"22px",
