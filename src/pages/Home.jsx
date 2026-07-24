@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import CesiumGlobe from '../components/CesiumGlobe';
 import LoginModal from '../components/LoginModal';
+import LoveTimer from "../components/LoveTimer";
 
 export default function Home({ goTo, goToCity }) {
   const title = '一路向哪？'.split('');
