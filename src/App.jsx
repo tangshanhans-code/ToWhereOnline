@@ -77,9 +77,16 @@ export default function App() {
     // Initial load
     handleHashChange();
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [isMobile]);
+window.addEventListener('hashchange', handleHashChange);
+
+return () => {
+  window.removeEventListener(
+    'hashchange',
+    handleHashChange
+  );
+};
+
+}, [isMobile]);
 
   const setTabWithHash = useCallback((tab) => {
     window.location.hash = tab;
