@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Story from './pages/Story';
+import Memory from './pages/Memory';
 import End from './pages/End';
 import CityDetail from './pages/CityDetail';
 
@@ -51,14 +52,26 @@ export default function App() {
     // 2. Handle Hash for tabs
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['keywords', 'towhere', 'breaking', 'letters'].includes(hash)) {
+      if ([
+  'keywords',
+  'towhere',
+  'breaking',
+  'letters',
+  'memory'
+].includes(hash)) {
+
         // Prevent keyboards on mobile
         if (isMobile && hash === 'keywords') {
           setTabWithHash('towhere');
         } else {
-          setActiveTab(hash);
-        }
-      }
+
+  if (hash === 'memory') {
+    setPage('memory');
+  } else {
+    setActiveTab(hash);
+  }
+
+}
     };
 
     // Initial load
@@ -236,15 +249,28 @@ export default function App() {
             </div>
           )}
 
-          {page === 'story' && <Story goTo={goTo} />}
-          {page === 'end' && <End goTo={goTo} />}
+{page === 'story' && <Story goTo={goTo} />}
+{page === 'end' && <End goTo={goTo} />}
 
-          {/* CityDetail renders on top, Globe continues to exist hidden */}
-          {page === 'city' && selectedCity && (
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100vw', height: '100%', zIndex: 9999, background: 'linear-gradient(135deg, #0a0f1a 0%, #0d1525 40%, #111d35 100%)' }}>
-              <CityDetail cityName={selectedCity} goBack={goBackToGlobe} />
-            </div>
-          )}
+
+/* Memory Page */
+{page === 'memory' && <Memory />}
+
+
+/* CityDetail renders on top, Globe continues to exist hidden */
+{page === 'city' && selectedCity && (
+  <div style={{ 
+    position:'absolute',
+    top:0,
+    left:0,
+    width:'100vw',
+    height:'100%',
+    zIndex:9999,
+    background:'linear-gradient(135deg, #0a0f1a 0%, #0d1525 40%, #111d35 100%)'
+  }}>
+    <CityDetail cityName={selectedCity} goBack={goBackToGlobe} />
+  </div>
+)}
 
           {page === 'annual' && <EnergyStation goTo={goTo} />}
           <MusicPlayer />
