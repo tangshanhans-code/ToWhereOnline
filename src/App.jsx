@@ -49,42 +49,60 @@ export default function App() {
       }
     }
 
-    // 2. Handle Hash for tabs
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if ([
-  'keywords',
-  'towhere',
-  'breaking',
-  'letters',
-  'memory'
-].includes(hash)) {
+   // 2. Handle Hash for tabs
+useEffect(() => {
 
-        // Prevent keyboards on mobile
-        if (isMobile && hash === 'keywords') {
-          setTabWithHash('towhere');
-        } else {
+  const handleHashChange = () => {
 
-  if (hash === 'memory') {
-    setPage('memory');
-  } else {
-    setActiveTab(hash);
-  }
+    const hash = window.location.hash.replace('#','');
 
-}
-    };
 
-    // Initial load
-    handleHashChange();
+    if ([
+      'keywords',
+      'towhere',
+      'breaking',
+      'letters',
+      'memory'
+    ].includes(hash)) {
 
-window.addEventListener('hashchange', handleHashChange);
 
-return () => {
-  window.removeEventListener(
+      if (isMobile && hash === 'keywords') {
+
+        setActiveTab('towhere');
+
+      } else if(hash === 'memory') {
+
+        setPage('memory');
+
+      } else {
+
+        setActiveTab(hash);
+
+      }
+
+    }
+
+  };
+
+
+  handleHashChange();
+
+
+  window.addEventListener(
     'hashchange',
     handleHashChange
   );
-};
+
+
+  return () => {
+
+    window.removeEventListener(
+      'hashchange',
+      handleHashChange
+    );
+
+  };
+
 
 }, [isMobile]);
 
