@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import CesiumGlobe from './CesiumGlobe';
 import { supabase } from '../lib/supabaseClient';
 import AdminTokenManager from './admin/AdminTokenManager';
+import LoveTimer from "./LoveTimer";
 
 
 // Carousel sequence: 0(15s) -> 1(15s) -> 2(40s) -> 1(15s) -> 0(15s) -> repeat
@@ -245,6 +246,7 @@ export default function PinkAnimationHome({ goTo, goToCity, isCityMode = false, 
                 onUserInteract={handleUserInteract}
                 cityPoints={cityPoints}
             />
+            <LoveTimer />
 
             {/* Bottom Navigation: 3 Glowing Dots */}
             <motion.div
