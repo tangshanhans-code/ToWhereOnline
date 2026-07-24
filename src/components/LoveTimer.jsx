@@ -1,52 +1,89 @@
-import React,{useEffect,useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export default function LoveTimer(){
+
+const start = new Date("2025-09-17");
+const end = new Date("2026-06-26");
 
 const [now,setNow]=useState(new Date());
 
 useEffect(()=>{
- const t=setInterval(()=>setNow(new Date()),1000);
- return ()=>clearInterval(t);
+ const timer=setInterval(()=>{
+   setNow(new Date());
+ },1000);
+
+ return ()=>clearInterval(timer);
 },[]);
 
 
-const start=new Date("2026-06-26T00:00:00");
+function diff(a,b){
 
-const diff=now-start;
+let s=Math.floor((b-a)/1000);
 
+let d=Math.floor(s/86400);
+s%=86400;
 
-const day=Math.floor(diff/86400000);
-const hour=Math.floor(diff/3600000)%24;
-const min=Math.floor(diff/60000)%60;
-const sec=Math.floor(diff/1000)%60;
+let h=Math.floor(s/3600);
+s%=3600;
+
+let m=Math.floor(s/60);
+let sec=s%60;
+
+return `${d}天 ${h}小时 ${m}分 ${sec}秒`;
+
+}
 
 
 return (
 
 <div
 style={{
-position:"fixed",
-right:"40px",
+position:"absolute",
 top:"40px",
+left:"50%",
+transform:"translateX(-50%)",
 zIndex:99999,
 color:"#fff",
-background:"rgba(0,0,0,.45)",
-padding:"20px 30px",
-borderRadius:"20px",
-backdropFilter:"blur(10px)",
-fontSize:"18px"
+fontSize:"22px",
+textAlign:"center",
+background:"rgba(0,0,0,0.4)",
+padding:"20px",
+borderRadius:"15px",
+backdropFilter:"blur(10px)"
 }}
 >
 
-<div style={{fontSize:"24px"}}>
-分开的日子
+<div>
+❤️ 在一起的日子
 </div>
 
 <div>
-{day}天 {hour}小时 {min}分 {sec}秒
+2025.09.17 - 2026.06.26
 </div>
 
+<div>
+{diff(start,end)}
 </div>
+
+<div style={{marginTop:"15px"}}>
+⏸ 已暂停
+</div>
+
+
+<hr/>
+
+
+<div>
+💔 分开的日子
+</div>
+
+<div>
+{diff(end,now)}
+</div>
+
+
+</div>
+
 
 )
 
