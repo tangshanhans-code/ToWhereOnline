@@ -25,8 +25,7 @@ export default function PinkAnimationHome({ goTo, goToCity, isCityMode = false, 
     const [showSidebar, setShowSidebar] = useState(false);
     const [showInfoModal, setShowInfoModal] = useState(false);
     const [logContent, setLogContent] = useState('');
-    const DEFAULT_LOG = '· 2025.09.17 那一天，你走进我的世界，也让我的生活多了一份期待\n· 2026.06.26 我们在这个夏天暂时告别，但那些快乐、争吵、陪伴与温柔，都真实存在过\n· 后来的日子里
-我开始重新认识自己，也开始整理那些舍不得忘记的回忆\n· 愿这个小小的网站，替我们记录曾经拥有过的美好';
+const DEFAULT_LOG = '· 2025.09.17\n那一天，你走进我的世界，也让我的生活多了一份期待。\n\n· 2026.06.26\n我们在这个夏天暂时告别，但那些快乐、争吵、陪伴与温柔，都真实存在过。\n\n· 后来的日子里\n我开始重新认识自己，也开始整理那些舍不得忘记的回忆。\n\n· 愿这个小小的网站\n替我们记录曾经拥有过的美好。';
     const [logSaving, setLogSaving] = useState(false);
     const [logSaved, setLogSaved] = useState(false);
     const [cities, setCities] = useState([]);
