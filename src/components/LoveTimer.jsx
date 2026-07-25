@@ -38,18 +38,17 @@ return (
 
 <div
 style={{
-position:"absolute",
-top:"40px",
-left:"50%",
-transform:"translateX(-50%)",
-zIndex:99999,
-color:"#fff",
-fontSize:"22px",
-textAlign:"center",
-background:"rgba(0,0,0,0.4)",
-padding:"20px",
-borderRadius:"15px",
-backdropFilter:"blur(10px)"
+  position:"absolute",
+  top:"80px",
+  right:"40px",
+  zIndex:99999,
+  color:"#fff",
+  fontSize:"22px",
+  textAlign:"center",
+  background:"rgba(0,0,0,0.4)",
+  padding:"20px",
+  borderRadius:"15px",
+  backdropFilter:"blur(10px)"
 }}
 >
 
