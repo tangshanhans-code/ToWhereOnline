@@ -39,17 +39,17 @@ return (
 <div
 style={{
 position:"fixed",
-top:"50%",
-right:"50px",
-transform:"translateY(-50%)",
+top:"80px",
+right:"40px",
 zIndex:99999,
 color:"#fff",
 fontSize:"22px",
 textAlign:"center",
-background:"rgba(0,0,0,0.4)",
+background:"rgba(0,0,0,0.45)",
 padding:"20px",
-borderRadius:"15px",
-backdropFilter:"blur(10px)"
+borderRadius:"18px",
+backdropFilter:"blur(12px)",
+width:"280px"
 }}
 >
 
